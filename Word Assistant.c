@@ -31,4 +31,22 @@ int main() {
 			next[i] = nullptr;
 	}
   };
+	void insert(string x){
+  	// Starting from the root node
+	node *temp = root;
+	for(int i=0;i<x.size();i++){
+ 		 //  Using numbers 0-25 to represent alphabets
+		int t = x[i] - 'a';
+  		// Making a new node,if it doesn't exist
+		if(temp->next[t]==nullptr)
+			temp->next[t]=new node();
+		temp = temp->next[t];
+		  //  Increasing size of sub-graph rooted at this node
+		temp->size++;
+	}
+	// Increasing the frequency of this node as the word ends here
+	temp->end++;
+	
+	insertWithFreq(x,temp->end);
+} 
 }

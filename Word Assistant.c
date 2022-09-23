@@ -21,4 +21,14 @@ int main() {
         }
         cout<<s<<" ";
     }
+    struct node{
+	int size ,end;
+	long long int maxfreq;
+	node* next[26];
+	node(){
+		size = 0,end = 0, maxfreq=0;
+		for(int i=0;i<26;i++)
+			next[i] = nullptr;
+	}
+  };
 }

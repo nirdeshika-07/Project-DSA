@@ -8,6 +8,10 @@ int main() {
     int n,m;
     cin>>n>>m;
     srand(time(NULL));//  without this rand() function might continuously give the same value
+	int N = 10;
+  
+    // Function Call
+    randomPasswordGeneration(N);
     
     while(n--){
         int stringLen = (rand() % m) +1; // getting random length
@@ -62,7 +66,57 @@ int main() {
 			next[i] = nullptr;
 	}
   };
-	void insert(string x){
+	
+}
+void randomPasswordGeneration(int N)
+{
+    // Initialize counter
+    int i = 0;
+  
+    int randomizer = 0;
+  
+    // Seed the random-number generator
+    // with current time so that the
+    // numbers will be different every time
+    srand((unsigned int)(time(NULL)));
+  
+    
+    
+  
+    // Array of small alphabets
+    char letter[] = "abcdefghijklmnoqprstuvwyzx";
+  
+    // Array of capital alphabets
+    char LETTER[] = "ABCDEFGHIJKLMNOQPRSTUYWVZX";
+  
+  
+    // Stores the random password
+    char password[N];
+  
+    // To select the randomizer
+    // inside the loop
+    randomizer = rand() % 4;
+  
+    // Iterate over the range [0, N]
+    for (i = 0; i < N; i++) {
+  
+        
+         
+        
+         if (randomizer == 3) {
+            password[i] = LETTER[rand() % 26];
+            randomizer = rand() % 4;
+            printf("%c", password[i]);
+        }
+        else {
+            password[i] = letter[rand() % 26];
+            randomizer = rand() % 4;
+            printf("%c", password[i]);
+        }
+    }
+}
+
+void insert(string x){
   	// Starting from the root node
 	node *temp = root;
 	for(int i=0;i<x.size();i++){
@@ -80,4 +134,3 @@ int main() {
 	
 	insertWithFreq(x,temp->end);
 } 
-}

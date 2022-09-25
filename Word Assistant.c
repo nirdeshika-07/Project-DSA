@@ -21,6 +21,37 @@ int main() {
         }
         cout<<s<<" ";
     }
+	while(!done)
+	{
+		std::cin >> input;
+		if(input == '1')
+		{
+			sentence += temp + ' ';
+			word = "";
+			std::cout << sentence << std::endl;
+		}
+		else if(input == '2')
+		{
+			sentence += word + ' ';
+			word = "";
+			std::cout << sentence << std::endl;
+		}
+		else if(input != '0')
+		{
+			word += input;
+			for(it = dict.begin(); it != dict.end(); ++it)
+			{
+				if(word == (*it).substr(0, word.length()))
+				{
+					std::cout << (*it) << std::endl;
+					temp = (*it);
+					break;
+				}
+			}
+		}
+		else
+			done = true;
+	}
     struct node{
 	int size ,end;
 	long long int maxfreq;

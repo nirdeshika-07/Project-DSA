@@ -1,4 +1,32 @@
+//Node Declaration(AVL Tree)
 
+struct avl_node
+{
+    int data;
+    struct avl_node *left;                          //declaring a node for left side insertion
+    struct avl_node *right;                         //declaring a node for right side insertion
+}*root;
+//Right- Right Rotation
+
+avl_node *avlTree::rr_rotation(avl_node *parent)
+{
+	avl_node *temp;                                 //creating a temporary node
+    temp = parent->right;                           //storing the value from the right side of the parent node
+    parent->right = temp->left;                     //replacing the value on the right side with the value on the left side
+    temp->left = parent;                            //replacing the value on the left side with the parent node
+    return temp;                                    //returning the modified node
+}
+
+//Left- Left Rotation
+
+avl_node *avlTree::ll_rotation(avl_node *parent)
+{
+    avl_node *temp;                                 //creating a temporary node
+    temp = parent->left;                            //storing the value from the left side of the parent node
+    parent->left = temp->right;                     //replacing the value on the left side with the value on the right side
+    temp->right = parent;                           //replacing the value on the right side with the parent node
+    return temp;                                    //returning the modified node
+}
 //BST 
 struct node
 {

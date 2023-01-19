@@ -225,3 +225,130 @@ enum KeyStatus ins(struct nodebt *ptr, int key, int *upKey,struct nodebt **newno
     (*newnode)->p[(*newnode)->n] = lastPtr;
     return InsertIt;
 }
+//Display Btree
+
+void display(struct nodebt *ptr, int blanks)
+{
+	if (ptr)
+    {
+        int i;
+        for(i=1; i<=blanks; i++)
+            cout<<" ";
+        for (i=0; i < ptr->n; i++)
+            cout<<ptr->keys[i]<<" ";
+        cout<<"\n";
+        for (i=0; i <= ptr->n; i++)
+            display(ptr->p[i], blanks+10);
+    }
+}
+
+//Search for the position
+
+int searchPos(int key, int *key_arr, int n)
+{
+    int pos=0;
+    while (pos < n && key > key_arr[pos])
+        pos++;
+    return pos;
+}
+
+//EatLine
+
+void eatline(void) 
+{
+  	char c;
+  	cout<<" ";
+  	while(c=getchar()!='\n');
+}
+
+int main()
+{
+	system("cls");
+  	avlTree a;            //creating an object of avlTree class
+  	BST bst;              //creating an object of BST class
+  	node *temp;           //creating an temporary node
+ 	cout<<"\t\t\t\t\tTHE TREE REPRESENTATION"<<endl<<endl;
+ 	while(1)
+ 	{
+  		int c,n,e;
+  		cout<<endl<<"\t\t\t\t\t1. ENTER THE NUMBER FOR AVL TREE";
+  		cout<<endl<<"\t\t\t\t\t2. ENTER THE NUMBER FOR B-TREE";
+  		cout<<endl<<"\t\t\t\t\t3. ENTER THE NUMBER FOR BINARY SEARCH TREE";
+  		cout<<endl<<"\t\t\t\t\t4. DISPLAY THE NUMBER FOR AVL TREE";
+  		cout<<endl<<"\t\t\t\t\t5. DISPLAY THE NUMBER FOR B-TREE";
+  		cout<<endl<<"\t\t\t\t\t6. DISPLAY THE NUMBER FOR BINARY SEARCH TREE";
+  		cout<<endl<<"\t\t\t\t\t7. EXIT";
+  		cout<<endl<<"\t\t\t\t\tWhat would you like to do? ";    				//Displaying the options to the user
+  		cin>>c;
+  		switch(c)
+  		{
+   			case 1: 
+			   	cout<<endl<<"How many elements do you want to enter for AVL tree: ";      //If user chooses to enter, ask how many elements they want to enter?
+           		cin>>e;
+           		for(int i=0;i<e;i++)
+           		{
+            		cout<<endl<<"Enter the number: ";                        //Taking in the input values
+   					cin>>n;
+            		//avl insertion
+            		root=a.insert(root,n);
+           		}
+            	break;
+
+   			case 2:
+   				cout<<endl<<"How many elements do you want to enter for B-tree: ";      //If user chooses to enter, ask how many elements they want to enter?
+           		cin>>e;
+           		for(int i=0;i<e;i++)
+           		{
+            		cout<<endl<<"Enter the number: ";                        //Taking in the input values
+   					cin>>n;
+            		//btree insertion
+            		eatline();
+            		insert(n);
+           		}
+            	break;
+           		
+			case 3: 
+				cout<<endl<<"How many elements do you want to enter for BST: ";      //If user chooses to enter, ask how many elements they want to enter?
+           		cin>>e;
+           		for(int i=0;i<e;i++)
+           		{
+            		cout<<endl<<"Enter the number: ";                        //Taking in the input values
+   					cin>>n;
+            		//bst insertion
+            		temp=new node;
+            		temp->info=n;
+            		bst.insert(rootbs,temp);
+           		}
+            	break;
+            
+			case 4: 
+				//AVL display
+           		cout<<endl<<endl<<endl<<" \t\tAVL TREE: "<<endl;
+           		a.display(root,1);
+           		cout<<endl;
+				break;
+				
+            case 5: 
+            	//Btree display
+           		cout<<endl<<endl<<endl<<"\t\t BTREE: "<<endl;
+           		display(rootbt,0);
+           		cout<<endl;
+				break;
+            
+            case 6: 
+            	//BST display
+           		cout<<endl<<endl<<endl<<"\t\t BST: "<<endl;
+           		bst.display(rootbs,1);
+           		cout<<endl;
+				break;
+            
+            case 7: 
+            	exit(1);
+            	break;	
+            
+   			default: 
+			   	cout<<endl<<"Wrong input";      //If they enter an invalid option
+   		}
+  	}
+  	return 0;
+}
